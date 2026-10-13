@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | OpenLibrary</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="flex min-h-screen flex-col bg-[#faf7f2] font-['DM_Sans'] text-[#33251e]">
+    <%- include('includes/nav.ejs') %>
+    <% const money = amount => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(amount); %>
+    <main class="mx-auto w-full max-w-6xl flex-1 px-5 py-10 sm:px-8">
+        <p class="text-xs font-bold tracking-[2px] text-[#bd6a3c] uppercase">DELIVERY</p>
+        <h1 class="mt-2 font-['Playfair_Display'] text-4xl font-bold">Checkout</h1>
+        <% if (error) { %><p role="alert" class="mt-5 border-l-4 border-[#b34335] bg-[#fff3f0] p-4 text-sm text-[#8f3027]"><%= error %></p><% } %>
+        <div class="grid gap-10 py-8 lg:grid-cols-[1fr_340px]">
+            <form action="/checkout" method="POST" class="grid gap-5 sm:grid-cols-2">
+                <label class="text-sm font-semibold">Full name<input required name="name" value="<%= user.name || '' %>" autocomplete="name" class="mt-2 w-full rounded-lg border border-[#d9c6b4] bg-white px-3 py-3 font-normal"></label>
+                <label class="text-sm font-semibold">Email<input required type="email" name="email" value="<%= user.email || '' %>" autocomplete="email" class="mt-2 w-full rounded-lg border border-[#d9c6b4] bg-white px-3 py-3 font-normal"></label>
+                <label class="text-sm font-semibold sm:col-span-2">Phone<input required type="tel" name="phone" autocomplete="tel" class="mt-2 w-full rounded-lg border border-[#d9c6b4] bg-white px-3 py-3 font-normal"></label>
+                <label class="text-sm font-semibold sm:col-span-2">Delivery address<textarea required name="address" rows="3" autocomplete="street-address" class="mt-2 w-full rounded-lg border border-[#d9c6b4] bg-white px-3 py-3 font-normal"></textarea></label>
+                <label class="text-sm font-semibold">City<input required name="city" autocomplete="address-level2" class="mt-2 w-full rounded-lg border border-[#d9c6b4] bg-white px-3 py-3 font-normal"></label>
+                <label class="text-sm font-semibold">Postal code<input required name="postalCode" autocomplete="postal-code" class="mt-2 w-full rounded-lg border border-[#d9c6b4] bg-white px-3 py-3 font-normal"></label>
+                <fieldset class="sm:col-span-2">
+                    <legend class="text-sm font-semibold">Payment method</legend>
+                    <label class="mt-2 flex items-center gap-3 border border-[#d9c6b4] bg-white p-4"><input type="radio" checked disabled><span><span class="block font-semibold">Cash on Delivery</span><span class="text-sm text-[#82736a]">Pay when your books arrive.</span></span><i class="fa-solid fa-money-bill-wave ml-auto text-[#a95327]"></i></label>
+                </fieldset>
+                <button type="submit" class="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-lg bg-[#df793e] px-5 py-3.5 font-bold text-white hover:bg-[#c45b2b]"><i class="fa-solid fa-bag-shopping"></i>Place COD order</button>
+            </form>
+            <aside class="h-fit border-t border-[#eadbca] pt-5 lg:border-t-0 lg:border-l lg:pl-7">
+                <h2 class="font-['Playfair_Display'] text-xl font-bold">Your order</h2>
+                <ul class="mt-5 divide-y divide-[#eadbca]">
+                    <% cart.forEach(item => { %><li class="flex justify-between gap-4 py-3 text-sm"><span><%= item.name %> <span class="text-[#82736a]">× <%= item.quantity %></span></span><span class="shrink-0 font-semibold"><%= money(item.price * item.quantity) %></span></li><% }) %>
+                </ul>
+                <p class="mt-4 flex justify-between border-t border-[#eadbca] pt-4 text-lg font-bold"><span>Total</span><span><%= money(total) %></span></p>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>

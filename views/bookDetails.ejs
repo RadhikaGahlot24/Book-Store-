@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= book.name %> | OpenLibrary</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #faf7f2;
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .fade-up {
+            animation: fadeUp 0.7s ease-out both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .book-cover {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .book-cover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px rgba(43, 29, 22, 0.18);
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen flex-col text-[#33251e]">
+
+    <%- include('includes/nav.ejs') %>
+
+    <!-- Breadcrumb -->
+    <div class="mx-auto w-full max-w-6xl px-5 pt-8 sm:px-8">
+        <nav class="flex flex-wrap items-center gap-2 text-sm text-[#8b7463]">
+            <a href="/" class="transition hover:text-[#c86630]">Home</a>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <a href="/books" class="transition hover:text-[#c86630]">Books</a>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span class="font-semibold text-[#493024]">Book Details</span>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="mx-auto w-full max-w-6xl flex-grow px-5 py-8 sm:px-8 sm:py-12">
+
+        <div class="fade-up overflow-hidden rounded-3xl border border-[#eadbca] bg-white shadow-lg shadow-[#493024]/5">
+
+            <!-- Top Accent -->
+            <div class="h-2 bg-gradient-to-r from-[#493024] via-[#df793e] to-[#edb58d]"></div>
+
+            <div class="grid gap-10 p-6 sm:p-10 md:grid-cols-[0.8fr_1.2fr] md:gap-12 lg:p-12">
+
+                <!-- Book Cover -->
+                <section class="flex flex-col items-center">
+
+                    <div class="flex min-h-[350px] w-full max-w-sm items-center justify-center rounded-2xl bg-[#f2e8dc] p-5 sm:min-h-[430px]">
+
+                        <% if (book.image) { %>
+
+                            <img
+                                src="<%= book.image %>"
+                                alt="<%= book.name %> cover"
+                                class="book-cover max-h-[400px] w-auto max-w-full rounded-lg object-contain shadow-xl"
+                                loading="lazy"
+                            >
+
+                        <% } else { %>
+
+                            <div class="flex flex-col items-center justify-center py-16 text-center text-[#8b7463]">
+                                <i class="fa-solid fa-book-open text-6xl"></i>
+                                <p class="mt-4 font-semibold">Cover not available</p>
+                            </div>
+
+                        <% } %>
+
+                    </div>
+
+                    <a href="/books"
+                       class="mt-6 inline-flex items-center gap-2 rounded-xl border border-[#eadbca] px-5 py-3 font-semibold text-[#493024] transition hover:border-[#df793e] hover:bg-[#faf7f2]">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Books
+                    </a>
+
+                </section>
+
+                <!-- Book Information -->
+                <section class="flex flex-col">
+
+                    <span class="inline-flex w-fit items-center gap-2 rounded-full bg-[#f9e5d6] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#a95327]">
+                        <i class="fa-solid fa-book-open"></i>
+                        Book Details
+                    </span>
+
+                    <h1 class="heading-font mt-5 break-words text-3xl font-bold leading-tight text-[#493024] sm:text-4xl lg:text-5xl">
+                        <%= book.name %>
+                    </h1>
+
+                    <div class="mt-5 flex flex-wrap items-center gap-3">
+
+                        <!-- Bookmark -->
+                        <button
+                            id="bookmark-button"
+                            type="button"
+                            aria-pressed="<%= book.isBookmarked ? 'true' : 'false' %>"
+                            class="inline-flex items-center gap-2 rounded-xl border border-[#eadbca] bg-[#faf7f2] px-4 py-3 font-semibold transition hover:border-[#df793e] hover:bg-[#f2e8dc]"
+                        >
+                            <i
+                                id="bookmark-icon"
+                                class="<%= book.isBookmarked ? 'fa-solid text-[#df793e]' : 'fa-regular text-[#8b7463]' %> fa-bookmark text-lg"
+                            ></i>
+
+                            <span id="bookmark-text">
+                                <%= book.isBookmarked ? 'Bookmarked' : 'Add to Bookmarks' %>
+                            </span>
+                        </button>
+
+                    </div>
+
+                    <form action="/cart/add" method="POST" class="mt-4">
+                        <input type="hidden" name="bookId" value="<%= book.openLibraryId || book.id || book._id %>">
+                        <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-[#df793e] px-5 py-3 font-semibold text-white transition hover:bg-[#c45b2b]">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Add to cart
+                        </button>
+                    </form>
+
+                    <!-- Description -->
+                    <div class="mt-9 border-t border-[#eadbca] pt-7">
+
+                        <h2 class="flex items-center gap-3 text-xl font-bold text-[#493024]">
+                            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f2e8dc] text-[#c86630]">
+                                <i class="fa-solid fa-align-left"></i>
+                            </span>
+                            About This Book
+                        </h2>
+
+                        <div class="mt-4 whitespace-pre-line break-words text-base leading-8 text-[#78665a]">
+                            <% if (book.description) { %>
+                                <%= book.description %>
+                            <% } else { %>
+                                No description is available for this book yet.
+                            <% } %>
+                        </div>
+
+                    </div>
+
+                    <!-- Book Categories -->
+                    <% if (book.categories && book.categories.length > 0) { %>
+
+                        <div class="mt-8 border-t border-[#eadbca] pt-6">
+
+                            <h2 class="flex items-center gap-3 text-lg font-bold text-[#493024]">
+                                <i class="fa-solid fa-layer-group text-[#c86630]"></i>
+                                Categories
+                            </h2>
+
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <% book.categories.forEach(category => { %>
+                                    <span class="rounded-full border border-[#eadbca] bg-[#faf7f2] px-4 py-2 text-sm font-medium text-[#684c39]">
+                                        <%= category %>
+                                    </span>
+                                <% }) %>
+                            </div>
+
+                        </div>
+
+                    <% } %>
+
+                </section>
+
+            </div>
+        </div>
+
+        <!-- Bottom Note -->
+        <div class="mt-8 rounded-2xl border border-[#eadbca] bg-[#f2e8dc] p-6 text-center sm:p-8">
+
+            <i class="fa-solid fa-book-open text-3xl text-[#c86630]"></i>
+
+            <h2 class="heading-font mt-3 text-2xl font-bold text-[#493024]">
+                Every book has a story to tell.
+            </h2>
+
+            <p class="mt-2 text-sm leading-6 text-[#78665a]">
+                Save the books you love and keep your reading collection organized.
+            </p>
+
+        </div>
+
+    </main>
+
+    <%- include('includes/footer.ejs') %>
+
+    <!-- Bookmark Functionality -->
+    <script>
+        const bookmarkButton = document.getElementById('bookmark-button');
+        const bookmarkIcon = document.getElementById('bookmark-icon');
+        const bookmarkText = document.getElementById('bookmark-text');
+
+        const bookmarkUrl = '/books/bookmark/<%= book.openLibraryId.replace("/works/", "") %>';
+
+        bookmarkButton.addEventListener('click', async function () {
+            if (bookmarkButton.disabled) return;
+
+            bookmarkButton.disabled = true;
+            bookmarkText.textContent = 'Updating...';
+
+            try {
+                const response = await fetch(bookmarkUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update bookmark. Status: ' + response.status);
+                }
+
+                const data = await response.json();
+
+                if (typeof data.isBookmarked !== 'boolean') {
+                    throw new Error('Unexpected response from server.');
+                }
+
+                const isBookmarked = data.isBookmarked;
+
+                bookmarkButton.setAttribute(
+                    'aria-pressed',
+                    String(isBookmarked)
+                );
+
+                bookmarkIcon.classList.toggle('fa-solid', isBookmarked);
+                bookmarkIcon.classList.toggle('fa-regular', !isBookmarked);
+
+                bookmarkIcon.classList.toggle('text-[#df793e]', isBookmarked);
+                bookmarkIcon.classList.toggle('text-[#8b7463]', !isBookmarked);
+
+                bookmarkText.textContent = isBookmarked
+                    ? 'Bookmarked'
+                    : 'Add to Bookmarks';
+
+            } catch (error) {
+                console.error('Bookmark error:', error);
+                bookmarkText.textContent = 'Update failed — try again';
+            } finally {
+                bookmarkButton.disabled = false;
+            }
+        });
+    </script>
+
+</body>
+</html>

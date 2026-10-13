@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OpenLibrary | Contact Us</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #faf7f2;
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .fade-slide-down {
+            animation: fadeSlideDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .fade-up {
+            animation: fadeUp 0.8s ease-out both;
+        }
+
+        @keyframes fadeSlideDown {
+            from {
+                transform: translateY(-25px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .contact-input {
+            width: 100%;
+            border: 1px solid #e5d7c9;
+            border-radius: 12px;
+            background: #fffdfa;
+            padding: 13px 15px;
+            color: #33251e;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            padding-left: 3rem; 
+        }
+
+        .contact-input:focus {
+            border-color: #df793e;
+            box-shadow: 0 0 0 4px rgba(223, 121, 62, 0.13);
+        }
+
+        .contact-input::placeholder {
+            color: #a4978d;
+        }
+
+        .hero-shape {
+            border-radius: 0 0 45% 45% / 0 0 10% 10%;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen flex-col text-[#33251e]">
+
+    <%- include('includes/nav.ejs') %>
+
+    <!-- Hero Section -->
+    <section class="hero-shape fade-slide-down relative overflow-hidden bg-gradient-to-br from-[#493024] via-[#38241b] to-[#241711] px-5 py-14 text-center sm:py-16">
+
+        <div class="absolute -left-12 -top-12 h-48 w-48 rounded-full bg-[#df793e]/15 blur-3xl"></div>
+        <div class="absolute -bottom-10 -right-10 h-48 w-48 rounded-full bg-[#d8a878]/10 blur-3xl"></div>
+
+        <div class="relative z-10 mx-auto max-w-3xl">
+
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-[#f5c29f]">
+                <i class="fa-solid fa-envelope"></i>
+                WE'RE HERE TO HELP
+            </span>
+
+            <h1 class="heading-font mt-5 text-4xl font-bold text-white sm:text-5xl md:text-6xl">
+                Contact <span class="text-[#ed9861]">Us</span>
+            </h1>
+
+            <p class="mx-auto mt-4 max-w-xl text-base leading-7 text-[#e8d9ce] sm:text-lg">
+                Have a question, suggestion, or need help finding your next
+                favorite book? We'd love to hear from you.
+            </p>
+
+            <div class="mt-7 flex items-center justify-center gap-2 text-sm font-medium">
+                <a href="/" class="text-[#e8d9ce] transition hover:text-white">
+                    Home
+                </a>
+                <i class="fa-solid fa-chevron-right text-xs text-[#ed9861]"></i>
+                <span class="text-[#ed9861]">Contact Us</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="mx-auto w-full max-w-7xl flex-grow px-5 py-12 sm:px-8 sm:py-16">
+
+        <div class="fade-up grid items-stretch gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+
+            <!-- Contact Information Panel -->
+            <section class="relative flex flex-col justify-between overflow-hidden rounded-3xl bg-[#2b1d16] p-7 text-white shadow-xl sm:p-10">
+
+                <div class="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-[#df793e]/15 blur-3xl"></div>
+
+                <div class="relative z-10">
+
+                    <span class="text-sm font-bold uppercase tracking-[0.2em] text-[#ed9861]">
+                        Get in touch
+                    </span>
+
+                    <h2 class="heading-font mt-4 text-3xl font-bold leading-tight sm:text-4xl">
+                        Good stories start with a conversation.
+                    </h2>
+
+                    <p class="mt-5 leading-7 text-[#d9c8bb]">
+                        Send us a message about book recommendations, the
+                        website, or anything else you'd like to share.
+                        We're glad you're part of our reading community.
+                    </p>
+
+                    <!-- Contact Details -->
+                    <div class="mt-9 space-y-5">
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-lg text-[#ed9861]">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="font-semibold">Explore Our Library</h3>
+                                <a href="/books"
+                                   class="mt-1 inline-block text-sm text-[#d9c8bb] transition hover:text-[#ed9861]">
+                                    Discover books
+                                    <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-lg text-[#ed9861]">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="font-semibold">Browse Categories</h3>
+                                <a href="/category"
+                                   class="mt-1 inline-block text-sm text-[#d9c8bb] transition hover:text-[#ed9861]">
+                                    Find your next read
+                                    <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Book Quote -->
+                <div class="relative z-10 mt-12 border-t border-white/15 pt-6">
+                    <i class="fa-solid fa-quote-left text-2xl text-[#df793e]"></i>
+
+                    <p class="heading-font mt-3 text-xl leading-8 text-[#f5e8dd]">
+                        "There is no friend as loyal as a book."
+                    </p>
+
+                    <p class="mt-3 text-sm font-medium text-[#ed9861]">
+                        — Ernest Hemingway
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- Contact Form -->
+            <section class="rounded-3xl border border-[#eadbca] bg-white p-6 shadow-sm sm:p-10">
+
+                <div class="mb-8">
+                    <span class="text-sm font-bold uppercase tracking-[0.2em] text-[#df793e]">
+                        Send a message
+                    </span>
+
+                    <h2 class="heading-font mt-3 text-3xl font-bold text-[#493024] sm:text-4xl">
+                        Let's talk books.
+                    </h2>
+
+                    <p class="mt-3 leading-7 text-[#78665a]">
+                        Fill in the form below and tell us how we can help.
+                    </p>
+                </div>
+
+                <form action="/contact" method="POST" class="space-y-6">
+
+                    <p class="text-sm text-[#78665a]">
+                        Fields marked with
+                        <span class="font-bold text-[#c86630]">*</span>
+                        are required.
+                    </p>
+
+                    <!-- Name and Email -->
+                    <div class="grid gap-5 sm:grid-cols-2">
+
+                        <div>
+                            <label for="name"
+                                   class="mb-2 block text-sm font-bold text-[#493024]">
+                                Your Name <span class="text-[#c86630]">*</span>
+                            </label>
+
+                            <div class="relative ">
+                               <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 inline-block text-[#a4978d]"></i>
+
+                                <input
+                                    id="name"
+                                    type="text"
+                                    name="name"
+                                    autocomplete="name"
+                                    required
+                                    maxlength="100"
+                                    class="contact-input pl-11 "
+                                    placeholder="Enter your name"
+                                >
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email"
+                                   class="mb-2 block text-sm font-bold text-[#493024]">
+                                Email Address <span class="text-[#c86630]">*</span>
+                            </label>
+
+                            <div class="relative">
+                                <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-[#a4978d]"></i>
+
+                                <input
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    autocomplete="email"
+                                    required
+                                    maxlength="254"
+                                    class="contact-input pl-11"
+                                    placeholder="Enter your email"
+                                >
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                        <label for="tel"
+                               class="mb-2 block text-sm font-bold text-[#493024]">
+                            Phone Number <span class="text-[#c86630]">*</span>
+                        </label>
+
+                        <div class="relative">
+                            <i class="fa-solid fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-[#a4978d]"></i>
+
+                            <input
+                                id="tel"
+                                type="tel"
+                                name="tel"
+                                autocomplete="tel"
+                                required
+                                maxlength="20"
+                                class="contact-input pl-11"
+                                placeholder="Enter your phone number"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Message -->
+                    <div>
+                        <label for="message"
+                               class="mb-2 block text-sm font-bold text-[#493024]">
+                            Your Message <span class="text-[#c86630]">*</span>
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            required
+                            maxlength="3000"
+                            class="contact-input resize-y"
+                            placeholder="Tell us what you're looking for..."
+                        ></textarea>
+
+                        <p class="mt-2 text-xs text-[#a4978d]">
+                            Share your question, suggestion, or feedback.
+                        </p>
+                    </div>
+
+                    <!-- Submit -->
+                    <button
+                        type="submit"
+                        class="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#df793e] px-6 py-4 font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#c86630] focus:outline-none focus:ring-4 focus:ring-[#df793e]/25 sm:w-auto"
+                    >
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Send Message
+                    </button>
+
+                </form>
+            </section>
+
+        </div>
+
+        <!-- Bottom Note -->
+        <section class="mt-12 rounded-2xl border border-[#eadbca] bg-[#f2e8dc] px-6 py-7 text-center">
+
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white text-xl text-[#c86630]">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+
+            <h3 class="heading-font mt-4 text-2xl font-bold text-[#493024]">
+                Thank you for being here.
+            </h3>
+
+            <p class="mx-auto mt-2 max-w-xl leading-7 text-[#78665a]">
+                Every reader makes our library more meaningful.
+                Keep exploring, keep learning, and keep reading.
+            </p>
+
+        </section>
+
+    </main>
+
+    <%- include('includes/footer.ejs') %>
+
+</body>
+</html>

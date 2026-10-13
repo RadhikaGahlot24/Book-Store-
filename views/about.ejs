@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OpenLibrary | About Us</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #faf7f2;
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .fade-slide-down {
+            animation: fadeSlideDown 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .fade-up {
+            animation: fadeUp 0.8s ease-out both;
+        }
+
+        @keyframes fadeSlideDown {
+            from {
+                transform: translateY(-25px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 28px rgba(73, 48, 36, 0.10);
+        }
+
+        .hero-shape {
+            border-radius: 0 0 45% 45% / 0 0 10% 10%;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col text-[#33251e]">
+
+    <%- include('includes/nav.ejs') %>
+
+    <!-- Hero Section -->
+    <section class="hero-shape fade-slide-down relative overflow-hidden bg-gradient-to-br from-[#493024] via-[#38241b] to-[#241711] px-5 py-16 md:py-20 text-center">
+
+        <div class="absolute -top-16 -left-16 h-52 w-52 rounded-full bg-[#df793e]/15 blur-3xl"></div>
+        <div class="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-[#d8a878]/10 blur-3xl"></div>
+
+        <div class="relative z-10 mx-auto max-w-4xl">
+
+            <span class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-[#f5c29f]">
+                <i class="fa-solid fa-book-open"></i>
+                OUR STORY
+            </span>
+
+            <h1 class="heading-font text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
+                About
+                <span class="text-[#ed9861]">OpenLibrary</span>
+            </h1>
+
+            <p class="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#e8d9ce] sm:text-lg">
+                Discover new stories, explore your favorite books, and build
+                a collection of knowledge — one page at a time.
+            </p>
+
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium">
+                <a href="/"
+                   class="rounded-full bg-[#df793e] px-6 py-3 text-white transition hover:bg-[#c86630]">
+                    <i class="fa-solid fa-house mr-2"></i>
+                    Back to Home
+                </a>
+
+                <a href="/books"
+                   class="rounded-full border border-white/30 px-6 py-3 text-white transition hover:bg-white/10">
+                    Explore Books
+                    <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <div class="mt-8 flex items-center justify-center gap-2 text-sm text-[#e8d9ce]">
+                <a href="/" class="transition hover:text-white">Home</a>
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+                <span class="text-[#ed9861]">About Us</span>
+            </div>
+
+        </div>
+    </section>
+
+    <main class="mx-auto w-full max-w-7xl flex-grow px-5 py-12 md:px-8 md:py-16">
+
+        <!-- Welcome Section -->
+        <section class="fade-up mb-16 grid items-center gap-10 md:grid-cols-2 md:gap-14">
+
+            <div>
+                <span class="text-sm font-bold uppercase tracking-[0.2em] text-[#df793e]">
+                    Welcome to our world
+                </span>
+
+                <h2 class="heading-font mt-3 text-3xl font-bold leading-tight text-[#493024] sm:text-4xl">
+                    Every book opens a door to a new world.
+                </h2>
+
+                <p class="mt-5 leading-8 text-[#78665a]">
+                    Welcome to OpenLibrary, a place created for people who
+                    love reading, learning, and discovering new ideas.
+                    Our platform helps you search for books, explore their
+                    details, and bookmark the titles you want to read.
+                </p>
+
+                <p class="mt-4 leading-8 text-[#78665a]">
+                    Whether you enjoy fiction, history, fantasy, science,
+                    or biographies, we make it easier to discover books
+                    that match your interests and organize your collection.
+                </p>
+
+                <a href="/books"
+                   class="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#493024] px-6 py-3 font-semibold text-white transition hover:bg-[#634332]">
+                    Start Exploring
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 items-center gap-4">
+
+                <div class="mt-8 overflow-hidden rounded-2xl shadow-lg">
+                    <img
+                        src="/booksimg1.jpg"
+                        alt="A collection of books"
+                        class="h-64 w-full object-cover transition duration-500 hover:scale-105 sm:h-80"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="mb-8 overflow-hidden rounded-2xl shadow-lg">
+                    <img
+                        src="/booksimg2.jpg"
+                        alt="Books ready to be explored"
+                        class="h-64 w-full object-cover transition duration-500 hover:scale-105 sm:h-80"
+                        loading="lazy"
+                    >
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Mission and Vision -->
+        <section class="mb-16 grid gap-6 md:grid-cols-2">
+
+            <div class="rounded-3xl border border-[#eadbca] bg-white p-7 shadow-sm md:p-9">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f9e5d6] text-2xl text-[#c86630]">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+
+                <h2 class="heading-font mt-5 text-2xl font-bold text-[#493024]">
+                    Our Mission
+                </h2>
+
+                <p class="mt-3 leading-7 text-[#78665a]">
+                    Our mission is to make book discovery simple and enjoyable.
+                    We want readers to find interesting titles, explore useful
+                    book information, and keep their favorite books organized
+                    in one convenient place.
+                </p>
+            </div>
+
+            <div class="rounded-3xl border border-[#eadbca] bg-[#f2e8dc] p-7 shadow-sm md:p-9">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-2xl text-[#493024]">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+
+                <h2 class="heading-font mt-5 text-2xl font-bold text-[#493024]">
+                    Our Vision
+                </h2>
+
+                <p class="mt-3 leading-7 text-[#78665a]">
+                    Our vision is to create a welcoming digital space where
+                    curiosity leads to discovery and readers can build their
+                    own collections of stories, ideas, and knowledge.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- What We Offer -->
+        <section class="mb-16">
+
+            <div class="mx-auto mb-9 max-w-2xl text-center">
+                <span class="text-sm font-bold uppercase tracking-[0.2em] text-[#df793e]">
+                    Explore the platform
+                </span>
+
+                <h2 class="heading-font mt-3 text-3xl font-bold text-[#493024] sm:text-4xl">
+                    What We Offer
+                </h2>
+
+                <p class="mt-4 leading-7 text-[#78665a]">
+                    Simple features designed to help you discover and organize
+                    the books you love.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                <!-- Search -->
+                <div class="feature-card rounded-2xl border border-[#eadbca] bg-white p-6">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#f9e5d6] text-xl text-[#c86630]">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+                    <h3 class="mt-5 text-lg font-bold text-[#493024]">
+                        Search for Books
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-[#78665a]">
+                        Search for books by title and explore available
+                        information about different publications.
+                    </p>
+                </div>
+
+                <!-- Details -->
+                <div class="feature-card rounded-2xl border border-[#eadbca] bg-white p-6">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#f2e8dc] text-xl text-[#493024]">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+
+                    <h3 class="mt-5 text-lg font-bold text-[#493024]">
+                        Book Details
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-[#78665a]">
+                        Explore book titles, cover images, descriptions,
+                        publication years, and available categories.
+                    </p>
+                </div>
+
+                <!-- Bookmark -->
+                <div class="feature-card rounded-2xl border border-[#eadbca] bg-white p-6">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#f9e5d6] text-xl text-[#c86630]">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </div>
+
+                    <h3 class="mt-5 text-lg font-bold text-[#493024]">
+                        Bookmark Books
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-[#78665a]">
+                        Bookmark your favorite titles so you can find
+                        and revisit them more easily.
+                    </p>
+                </div>
+
+                <!-- Categories -->
+                <div class="feature-card rounded-2xl border border-[#eadbca] bg-white p-6">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#f2e8dc] text-xl text-[#493024]">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+
+                    <h3 class="mt-5 text-lg font-bold text-[#493024]">
+                        Browse Categories
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-[#78665a]">
+                        Explore different genres and organize your
+                        reading interests by category.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section class="mb-16 overflow-hidden rounded-3xl bg-[#2b1d16] p-7 text-white md:p-10">
+
+            <div class="grid items-center gap-8 md:grid-cols-2">
+
+                <div>
+                    <span class="text-sm font-bold uppercase tracking-[0.2em] text-[#ed9861]">
+                        Behind the platform
+                    </span>
+
+                    <h2 class="heading-font mt-3 text-3xl font-bold sm:text-4xl">
+                        Built with Modern Technology
+                    </h2>
+
+                    <p class="mt-4 leading-7 text-[#d9c8bb]">
+                        OpenLibrary combines front-end design, server-side
+                        development, database management, and book discovery
+                        services to provide an interactive experience.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-3 md:justify-end">
+
+                    <span class="rounded-xl border border-white/10 bg-white/10 px-4 py-3 font-semibold text-[#f4c5a4]">
+                        <i class="fa-brands fa-html5 mr-2"></i>HTML
+                    </span>
+
+                    <span class="rounded-xl border border-white/10 bg-white/10 px-4 py-3 font-semibold text-[#f4c5a4]">
+                        <i class="fa-brands fa-css3-alt mr-2"></i>Tailwind CSS
+                    </span>
+
+                    <span class="rounded-xl border border-white/10 bg-white/10 px-4 py-3 font-semibold text-[#f4c5a4]">
+                        <i class="fa-brands fa-js mr-2"></i>JavaScript
+                    </span>
+
+                    <span class="rounded-xl border border-white/10 bg-white/10 px-4 py-3 font-semibold text-[#f4c5a4]">
+                        <i class="fa-brands fa-node-js mr-2"></i>Node.js
+                    </span>
+
+                    <span class="rounded-xl border border-white/10 bg-white/10 px-4 py-3 font-semibold text-[#f4c5a4]">
+                        <i class="fa-solid fa-server mr-2"></i>Express.js
+                    </span>
+
+                    <span class="rounded-xl border border-white/10 bg-white/10 px-4 py-3 font-semibold text-[#f4c5a4]">
+                        <i class="fa-solid fa-database mr-2"></i>MongoDB
+                    </span>
+
+                    <span class="rounded-xl border border-white/10 bg-white/10 px-4 py-3 font-semibold text-[#f4c5a4]">
+                        <i class="fa-solid fa-code mr-2"></i>EJS
+                    </span>
+
+                    <span class="rounded-xl border border-white/10 bg-white/10 px-4 py-3 font-semibold text-[#f4c5a4]">
+                        <i class="fa-solid fa-book-open mr-2"></i>Open Library API
+                    </span>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="pb-5 text-center">
+
+            <div class="mx-auto max-w-2xl">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#f2e8dc] text-3xl text-[#c86630]">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <h2 class="heading-font mt-5 text-3xl font-bold text-[#493024] sm:text-4xl">
+                    Your Next Favorite Book Awaits
+                </h2>
+
+                <p class="mt-4 leading-7 text-[#78665a]">
+                    Take a look around, discover something new, and start
+                    building your personal collection today.
+                </p>
+
+                <a href="/books"
+                   class="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#df793e] px-7 py-3.5 font-bold text-white shadow-md transition hover:-translate-y-1 hover:bg-[#c86630]">
+                    Explore the Library
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <%- include('includes/footer.ejs') %>
+
+</body>
+</html>

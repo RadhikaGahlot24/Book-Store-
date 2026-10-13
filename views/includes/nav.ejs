@@ -1,0 +1,168 @@
+
+
+<style>
+    html[data-theme="dark"] {
+        color-scheme: dark;
+    }
+
+    html[data-theme="dark"] body {
+        background-color: #171411 !important;
+        color: #f2e8dc !important;
+    }
+
+    html[data-theme="dark"] body [class~="bg-white"],
+    html[data-theme="dark"] body [class~="bg-white/80"],
+    html[data-theme="dark"] body [class~="bg-white/95"],
+    html[data-theme="dark"] body [class~="bg-[#faf7f2]"],
+    html[data-theme="dark"] body [class~="bg-[#f2e8dc]"],
+    html[data-theme="dark"] body [class~="bg-[#faf3eb]"],
+    html[data-theme="dark"] body [class~="bg-[#fff3f0]"] {
+        background-color: #28211c !important;
+    }
+
+    html[data-theme="dark"] body nav {
+        background-color: rgba(33, 27, 23, 0.97) !important;
+        border-color: #48392e !important;
+        color: #f2e8dc !important;
+    }
+
+    html[data-theme="dark"] body [class*="border-[#eadbca]"],
+    html[data-theme="dark"] body [class*="border-[#d9c6b4]"],
+    html[data-theme="dark"] body [class*="border-[#e5d5c5]"],
+    html[data-theme="dark"] body [class*="border-[#eee2d5]"],
+    html[data-theme="dark"] body [class*="border-[#dfcbb8]"] {
+        border-color: #48392e !important;
+    }
+
+    html[data-theme="dark"] body [class*="text-[#33251e]"],
+    html[data-theme="dark"] body [class*="text-[#5b4639]"],
+    html[data-theme="dark"] body [class*="text-[#493024]"],
+    html[data-theme="dark"] body [class*="text-[#684c39]"],
+    html[data-theme="dark"] body [class*="text-[#79543c]"] {
+        color: #f2e8dc !important;
+    }
+
+    html[data-theme="dark"] body input,
+    html[data-theme="dark"] body textarea,
+    html[data-theme="dark"] body select {
+        background-color: #211b17;
+        color: #f2e8dc;
+    }
+</style>
+
+<nav class="sticky top-0 z-50 border-b border-[#eadbca] bg-[#faf7f2]/95 shadow-sm backdrop-blur-md">
+
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-12">
+
+        <!-- Logo -->
+        <a href="/" class="group flex items-center gap-3">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#493024] text-[#f2b47e] shadow-md transition duration-300 group-hover:bg-[#68432d]">
+                <i class="fa-solid fa-book-open text-xl"></i>
+            </div>
+
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight text-[#33251e]">
+                    Open<span class="text-[#c46b38]">Library</span>
+                </h1>
+                <p class="text-[10px] font-semibold tracking-[2px] text-[#8c7566] uppercase">
+                    Discover Your Next Story
+                </p>
+            </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-semibold text-[#5b4639] sm:gap-x-7 sm:text-base">
+
+            <a href="/" class="group relative py-2 transition duration-300 hover:text-[#c46b38]">
+                Home
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-[#df793e] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+
+            <a href="/books" class="group relative py-2 transition duration-300 hover:text-[#c46b38]">
+                Books
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-[#df793e] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+
+            <a href="/category" class="group relative py-2 transition duration-300 hover:text-[#c46b38]">
+                Categories
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-[#df793e] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+
+            <a href="/about" class="group relative py-2 transition duration-300 hover:text-[#c46b38]">
+                About
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-[#df793e] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+
+            <a href="/contact" class="group relative py-2 transition duration-300 hover:text-[#c46b38]">
+                Contact
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-[#df793e] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+
+            <a href="/cart" class="inline-flex items-center gap-2 py-2 transition hover:text-[#c46b38]" aria-label="Shopping cart, <%= cartCount %> items">
+                <i class="fa-solid fa-basket-shopping"></i>
+                Cart <span class="rounded-full bg-[#493024] px-2 py-0.5 text-xs text-white"><%= cartCount %></span>
+            </a>
+
+            <button type="button" id="theme-toggle" class="inline-flex items-center gap-2 rounded-lg border border-[#d9c6b4] px-3 py-2 text-sm font-semibold transition hover:bg-white" aria-label="Switch to dark theme" title="Switch to dark theme">
+                <i id="theme-toggle-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
+                <span id="theme-toggle-label">Dark</span>
+            </button>
+
+            <% if (currentUser) { %>
+                <span class="py-2 text-sm">Hi, <%= currentUser.name %></span>
+                <form action="/logout" method="POST">
+                    <button type="submit" class="inline-flex items-center gap-2 rounded-lg border border-[#d9c6b4] px-3 py-2 text-sm font-semibold hover:bg-white">
+                        <i class="fa-solid fa-right-from-bracket"></i>Sign out
+                    </button>
+                </form>
+            <% } else { %>
+                <a href="/login" class="py-2 transition hover:text-[#c46b38]">Sign in</a>
+                <a href="/register" class="rounded-lg bg-[#493024] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#68432d]">Register</a>
+            <% } %>
+
+            <!-- Logout: visible only when admin is logged in -->
+          
+
+<% if (isadmin) { %>
+    <form action="/admin/logout" method="POST">
+        <button
+            type="submit"
+            class="inline-flex items-center gap-2 rounded-xl bg-[#df793e] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#c86630]"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+    </form>
+<% } %>
+
+
+
+        </div>
+    </div>
+</nav>
+
+<script>
+    (() => {
+        const root = document.documentElement
+        const toggle = document.getElementById('theme-toggle')
+        const icon = document.getElementById('theme-toggle-icon')
+        const label = document.getElementById('theme-toggle-label')
+
+        function applyTheme(theme) {
+            const isDark = theme === 'dark'
+            root.dataset.theme = isDark ? 'dark' : 'light'
+            icon.className = `fa-solid ${isDark ? 'fa-sun' : 'fa-moon'}`
+            label.textContent = isDark ? 'Light' : 'Dark'
+            toggle.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} theme`)
+            toggle.title = `Switch to ${isDark ? 'light' : 'dark'} theme`
+        }
+
+        applyTheme(localStorage.getItem('bookstore-theme') || 'light')
+        toggle.addEventListener('click', () => {
+            const theme = root.dataset.theme === 'dark' ? 'light' : 'dark'
+            localStorage.setItem('bookstore-theme', theme)
+            applyTheme(theme)
+        })
+    })()
+</script>
+

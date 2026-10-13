@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order <%= order._id %> | OpenLibrary</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="flex min-h-screen flex-col bg-[#faf7f2] font-['DM_Sans'] text-[#33251e]">
+    <%- include('includes/nav.ejs') %>
+    <% const money = amount => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(amount); %>
+    <main class="mx-auto w-full max-w-4xl flex-1 px-5 py-12 sm:px-8">
+        <section class="border-b border-[#eadbca] pb-8 text-center">
+            <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e5f0e8] text-2xl text-[#39734a]"><i class="fa-solid fa-check"></i></span>
+            <p class="mt-5 text-xs font-bold tracking-[2px] text-[#39734a] uppercase">ORDER PLACED</p>
+            <h1 class="mt-2 font-['Playfair_Display'] text-4xl font-bold">Thank you, <%= order.customer.name %>.</h1>
+            <p class="mt-3 text-[#82736a]">Your order is confirmed. Pay cash when it arrives.</p>
+            <p class="mt-4 text-sm">Order <span class="font-mono font-semibold">#<%= order._id %></span></p>
+        </section>
+        <div class="grid gap-10 py-8 sm:grid-cols-[1fr_260px]">
+            <section>
+                <h2 class="font-['Playfair_Display'] text-xl font-bold">Order details</h2>
+                <ul class="mt-4 divide-y divide-[#eadbca]">
+                    <% order.items.forEach(item => { %><li class="flex justify-between gap-4 py-4"><span><span class="font-semibold"><%= item.name %></span><span class="block text-sm text-[#82736a]">Qty <%= item.quantity %> · <%= money(item.price) %> each</span></span><span class="shrink-0 font-semibold"><%= money(item.price * item.quantity) %></span></li><% }) %>
+                </ul>
+                <p class="flex justify-between border-t border-[#eadbca] pt-4 text-lg font-bold"><span>Total due on delivery</span><span><%= money(order.total) %></span></p>
+            </section>
+            <aside class="border-t border-[#eadbca] pt-5 sm:border-t-0 sm:border-l sm:pl-6">
+                <h2 class="font-['Playfair_Display'] text-xl font-bold">Delivering to</h2>
+                <p class="mt-4 text-sm leading-6"><%= order.customer.name %><br><%= order.customer.address %><br><%= order.customer.city %>, <%= order.customer.postalCode %><br><%= order.customer.phone %><br><%= order.customer.email %></p>
+                <p class="mt-5 text-sm"><span class="font-semibold">Payment</span><br><%= order.paymentMethod %></p>
+                <p class="mt-3 text-sm"><span class="font-semibold">Status</span><br><%= order.status %></p>
+            </aside>
+        </div>
+        <a href="/books" class="inline-flex items-center gap-2 rounded-lg bg-[#493024] px-5 py-3 font-semibold text-white hover:bg-[#68432d]"><i class="fa-solid fa-book-open"></i>Continue browsing</a>
+    </main>
+</body>
+</html>

@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OpenLibrary | Admin Login</title>
+        <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #faf7f2;
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .fade-up {
+            animation: fadeUp 0.8s ease-out both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .login-input {
+            width: 100%;
+            border: 1px solid #e5d7c9;
+            border-radius: 12px;
+            background: #fffdfa;
+            padding: 14px 44px;
+            color: #33251e;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .login-input::placeholder {
+            color: #a4978d;
+        }
+
+        .login-input:focus {
+            border-color: #df793e;
+            box-shadow: 0 0 0 4px rgba(223, 121, 62, 0.13);
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen flex-col text-[#33251e]">
+
+    <!-- Navbar -->
+    <%- include('includes/nav.ejs') %>
+
+    <!-- Main Section -->
+    <main class="flex flex-1 items-center justify-center px-5 py-12 sm:px-8 sm:py-16">
+
+        <div class="fade-up grid w-full max-w-5xl overflow-hidden rounded-3xl border border-[#eadbca] bg-white shadow-xl shadow-[#493024]/10 md:grid-cols-2">
+
+            <!-- Left Side -->
+            <section class="relative hidden flex-col justify-between overflow-hidden bg-gradient-to-br from-[#493024] via-[#38241b] to-[#241711] p-10 text-white md:flex lg:p-12">
+
+                <div class="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#df793e]/15 blur-3xl"></div>
+                <div class="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[#d8a878]/10 blur-3xl"></div>
+
+                <div class="relative z-10">
+
+                    <div class="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/15 bg-white/10">
+                        <i class="fa-solid fa-shield-halved text-3xl text-[#ed9861]"></i>
+                    </div>
+
+                    <p class="text-sm font-bold uppercase tracking-[0.2em] text-[#ed9861]">
+                        Administration
+                    </p>
+
+                    <h1 class="heading-font mt-4 text-4xl font-bold leading-tight lg:text-5xl">
+                        Welcome to your
+                        <span class="text-[#ed9861]">Admin Panel.</span>
+                    </h1>
+
+                    <p class="mt-5 max-w-sm leading-7 text-[#d9c8bb]">
+                        Manage your bookstore, organize books, and oversee
+                        your library through the administration dashboard.
+                    </p>
+
+                    <div class="mt-8 space-y-4 text-sm text-[#e8d9ce]">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-[#ed9861]"></i>
+                            <span>Manage your book collection</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-[#ed9861]"></i>
+                            <span>Organize your library content</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-[#ed9861]"></i>
+                            <span>Access administration features</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="relative z-10 mt-12 border-t border-white/15 pt-6">
+                    <div class="flex items-center gap-3 text-sm text-[#d9c8bb]">
+                        <i class="fa-solid fa-lock text-[#ed9861]"></i>
+                        <span>Restricted to authorized administrators</span>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Right Side: Login Form -->
+            <section class="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+
+                <!-- Mobile Icon -->
+                <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f2e8dc] text-2xl text-[#c86630] md:hidden">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <div class="mb-8">
+
+                    <a href="/"
+                       class="inline-flex items-center gap-2 text-sm font-semibold text-[#8b7463] transition hover:text-[#c86630]">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+
+                    <p class="mt-7 text-sm font-bold uppercase tracking-[0.2em] text-[#c86630]">
+                        Administrator Access
+                    </p>
+
+                    <h2 class="heading-font mt-3 text-3xl font-bold text-[#493024] sm:text-4xl">
+                        Admin Login
+                    </h2>
+
+                    <p class="mt-3 leading-6 text-[#78665a]">
+                        Sign in to access your administration dashboard.
+                    </p>
+
+                </div>
+
+                <!-- Login Form -->
+                <form action="/admin/login" method="POST" class="space-y-6">
+
+                    <!-- Username -->
+                    <div>
+                        <label for="username"
+                               class="mb-2 block text-sm font-bold text-[#493024]">
+                            Username
+                        </label>
+
+                        <div class="relative">
+                            <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-[#a4978d]"></i>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                autocomplete="username"
+                                required
+                                maxlength="100"
+                                placeholder="Enter your username"
+                                class="login-input"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label for="password"
+                               class="mb-2 block text-sm font-bold text-[#493024]">
+                            Password
+                        </label>
+
+                        <div class="relative">
+                            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-[#a4978d]"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                autocomplete="current-password"
+                                required
+                                placeholder="Enter your password"
+                                class="login-input pr-12"
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                aria-label="Show password"
+                                aria-pressed="false"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-[#a4978d] transition hover:text-[#c86630]"
+                            >
+                                <i id="eyeIcon" class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button
+                        type="submit"
+                        class="flex w-full items-center justify-center gap-3 rounded-xl bg-[#df793e] px-6 py-4 font-bold text-white shadow-md shadow-[#df793e]/20 transition hover:-translate-y-0.5 hover:bg-[#c86630] focus:outline-none focus:ring-4 focus:ring-[#df793e]/25"
+                    >
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Login to Admin Panel
+                    </button>
+
+                </form>
+
+                <!-- Security Notice -->
+                <div class="mt-8 flex items-start gap-3 rounded-xl border border-[#eadbca] bg-[#faf7f2] p-4">
+
+                    <i class="fa-solid fa-circle-info mt-0.5 text-lg text-[#c86630]"></i>
+
+                    <p class="text-xs leading-6 text-[#78665a]">
+                        This area is restricted to authorized administrators.
+                        Keep your login credentials private and secure.
+                    </p>
+
+                </div>
+
+                <p class="mt-7 text-center text-xs text-[#a4978d]">
+                    <i class="fa-solid fa-book-open mr-1"></i>
+                    OpenLibrary · Administrator Portal
+                </p>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Password Show / Hide -->
+    <script>
+        const passwordInput = document.getElementById("password");
+        const togglePasswordButton = document.getElementById("togglePassword");
+        const eyeIcon = document.getElementById("eyeIcon");
+
+        togglePasswordButton.addEventListener("click", function () {
+            const isPasswordHidden = passwordInput.type === "password";
+
+            passwordInput.type = isPasswordHidden ? "text" : "password";
+
+            eyeIcon.classList.toggle("fa-eye", !isPasswordHidden);
+            eyeIcon.classList.toggle("fa-eye-slash", isPasswordHidden);
+
+            togglePasswordButton.setAttribute(
+                "aria-label",
+                isPasswordHidden ? "Hide password" : "Show password"
+            );
+
+            togglePasswordButton.setAttribute(
+                "aria-pressed",
+                String(isPasswordHidden)
+            );
+        });
+    </script>
+
+</body>
+</html>

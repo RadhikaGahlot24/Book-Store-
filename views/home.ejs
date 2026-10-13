@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OpenLibrary | Home</title>
+        <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="images/book-2-svgrepo-com.svg">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(
+                120deg,
+                #2b1d16 0%,
+                #493024 60%,
+                #68432d 100%
+            );
+        }
+
+        .book-cover {
+            transition: transform 0.3s ease;
+        }
+
+        .book-cover:hover {
+            transform: translateY(-8px) rotate(-2deg);
+        }
+
+        .orange-button {
+            transition: all 0.3s ease;
+        }
+
+        .orange-button:hover {
+            background-color: #c45b2b;
+            transform: translateY(-2px);
+        }
+
+        .soft-card {
+            transition: all 0.3s ease;
+        }
+
+        .soft-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(65, 40, 25, 0.10);
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen flex-col bg-[#faf7f2] text-[#33251e]">
+
+    <!-- Navbar -->
+    <%- include('includes/nav.ejs') %>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+
+        <!-- Hero Section -->
+        <section class="px-5 pt-8 pb-12 sm:px-8 lg:px-12">
+
+            <div class="hero-bg relative mx-auto max-w-7xl overflow-hidden rounded-[28px]">
+
+                <!-- Decorative Circles -->
+                <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full border border-white/10"></div>
+                <div class="pointer-events-none absolute -right-8 -top-8 h-52 w-52 rounded-full border border-white/10"></div>
+                <div class="pointer-events-none absolute -bottom-32 left-1/3 h-64 w-64 rounded-full bg-orange-400/5 blur-3xl"></div>
+
+                <div class="relative grid items-center gap-10 px-7 py-12 sm:px-12 sm:py-16 lg:grid-cols-2 lg:px-16 lg:py-20">
+
+                    <!-- Hero Text -->
+                    <div class="max-w-xl">
+
+                        <span class="inline-flex items-center gap-2 rounded-full border border-orange-200/20 bg-orange-100/10 px-4 py-2 text-xs font-semibold tracking-[2px] text-orange-200 uppercase">
+                            <span class="h-2 w-2 rounded-full bg-orange-400"></span>
+                            YOUR NEXT CHAPTER STARTS HERE
+                        </span>
+
+                        <h1 class="mt-7 text-4xl leading-tight font-bold text-[#fff8ee] sm:text-5xl lg:text-6xl">
+                            Discover Stories
+                            <span class="block text-[#e9a66b]">
+                                That Stay With You.
+                            </span>
+                        </h1>
+
+                        <p class="mt-6 max-w-lg text-base leading-8 text-[#e4d5c9] sm:text-lg">
+                            Explore a world of books, discover new perspectives,
+                            and find the stories that speak to your soul.
+                            Your next favourite read is waiting for you.
+                        </p>
+
+                        <!-- Buttons -->
+                        <div class="mt-8 flex flex-wrap gap-4">
+
+                            <a href="/books"
+                               class="orange-button inline-flex items-center gap-3 rounded-xl bg-[#df793e] px-6 py-3.5 font-semibold text-white shadow-lg shadow-black/10">
+                                Explore Books
+                                <span aria-hidden="true">&rarr;</span>
+                            </a>
+
+                            <a href="/about"
+                               class="inline-flex items-center rounded-xl border border-white/25 px-6 py-3.5 font-semibold text-white transition hover:bg-white/10">
+                                About Us
+                            </a>
+
+                        </div>
+
+                        <!-- Small Highlights -->
+                        <div class="mt-10 flex flex-wrap gap-x-8 gap-y-4 border-t border-white/15 pt-6">
+
+                            <div>
+                                <p class="text-2xl font-bold text-[#f2b47e]">Explore</p>
+                                <p class="mt-1 text-sm text-[#d9c6b8]">New worlds</p>
+                            </div>
+
+                            <div>
+                                <p class="text-2xl font-bold text-[#f2b47e]">Discover</p>
+                                <p class="mt-1 text-sm text-[#d9c6b8]">Hidden gems</p>
+                            </div>
+
+                            <div>
+                                <p class="text-2xl font-bold text-[#f2b47e]">Bookmark</p>
+                                <p class="mt-1 text-sm text-[#d9c6b8]">Your favourites</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Book Showcase -->
+                    <div class="relative mx-auto w-full max-w-md">
+
+                        <div class="absolute inset-8 rounded-full bg-orange-300/10 blur-3xl"></div>
+
+                        <div class="relative flex items-center justify-center gap-3 sm:gap-5">
+
+                            <!-- Book 1 -->
+                            <div class="book-cover mt-12 w-[30%] max-w-[145px] rotate-[-10deg] overflow-hidden rounded-md shadow-2xl shadow-black/30">
+                                <img
+                                    src="https://covers.openlibrary.org/b/id/10521270-L.jpg"
+                                    alt="Book cover"
+                                    class="aspect-[2/3] w-full object-cover"
+                                    loading="lazy"
+                                >
+                            </div>
+
+                            <!-- Book 2 -->
+                            <div class="book-cover z-10 w-[34%] max-w-[165px] overflow-hidden rounded-md shadow-2xl shadow-black/40">
+                                <img
+                                    src="https://covers.openlibrary.org/b/id/10523338-L.jpg"
+                                    alt="Book cover"
+                                    class="aspect-[2/3] w-full object-cover"
+                                    loading="lazy"
+                                >
+                            </div>
+
+                            <!-- Book 3 -->
+                            <div class="book-cover mt-10 w-[30%] max-w-[145px] rotate-[10deg] overflow-hidden rounded-md shadow-2xl shadow-black/30">
+                                <img
+                                    src="https://covers.openlibrary.org/b/id/10521269-L.jpg"
+                                    alt="Book cover"
+                                    class="aspect-[2/3] w-full object-cover"
+                                    loading="lazy"
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class="relative mx-auto mt-9 max-w-xs rounded-2xl border border-white/10 bg-white/10 p-4 text-center backdrop-blur-sm">
+                            <p class="text-sm font-semibold text-[#fff3e5]">
+                                Every book opens a new door.
+                            </p>
+                            <p class="mt-1 text-xs text-[#dbc5b4]">
+                                Find your next adventure today.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Browse Categories -->
+        <section class="px-5 py-10 sm:px-8 lg:px-12">
+
+            <div class="mx-auto max-w-7xl">
+
+                <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+
+                    <div>
+                        <p class="text-sm font-bold tracking-[3px] text-[#bd6a3c] uppercase">
+                            FIND YOUR INTEREST
+                        </p>
+
+                        <h2 class="mt-3 text-3xl font-bold text-[#33251e] sm:text-4xl">
+                            Browse by Category
+                        </h2>
+
+                        <p class="mt-3 max-w-xl leading-7 text-[#82736a]">
+                            From magical adventures to real-life stories,
+                            find something that matches your mood.
+                        </p>
+                    </div>
+
+                    <a href="/category"
+                       class="inline-flex w-fit items-center gap-2 font-semibold text-[#a6502b] transition hover:text-[#6d321b]">
+                        View Categories
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+
+                </div>
+
+                <!-- Category Cards -->
+                <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                    <a href="category?category=Fiction"
+                       class="soft-card group rounded-2xl border border-[#eee2d5] bg-white p-6">
+
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#f8e7d8] text-xl text-[#a6502b]">
+                            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                        </div>
+
+                        <h3 class="mt-5 text-xl font-bold">Fiction</h3>
+
+                        <p class="mt-2 text-sm leading-6 text-[#82736a]">
+                            Escape into imaginative worlds and unforgettable stories.
+                        </p>
+
+                        <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#b35c31]">
+                            Explore
+                            <span class="transition group-hover:translate-x-1">&rarr;</span>
+                        </span>
+                    </a>
+
+                    <a href="/category?category=Fantasy"
+                       class="soft-card group rounded-2xl border border-[#eee2d5] bg-white p-6">
+
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#e9e5f7] text-xl text-[#6854a4]">
+                            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                        </div>
+
+                        <h3 class="mt-5 text-xl font-bold">Fantasy</h3>
+
+                        <p class="mt-2 text-sm leading-6 text-[#82736a]">
+                            Experience magical kingdoms and extraordinary adventures.
+                        </p>
+
+                        <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#b35c31]">
+                            Explore
+                            <span class="transition group-hover:translate-x-1">&rarr;</span>
+                        </span>
+                    </a>
+
+                    <a href="/category?category=Science%20Fiction"
+                       class="soft-card group rounded-2xl border border-[#eee2d5] bg-white p-6">
+
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#dff1ee] text-xl text-[#287d73]">
+                            <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                        </div>
+
+                        <h3 class="mt-5 text-xl font-bold">Science Fiction</h3>
+
+                        <p class="mt-2 text-sm leading-6 text-[#82736a]">
+                            Explore futuristic ideas, science, and distant galaxies.
+                        </p>
+
+                        <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#b35c31]">
+                            Explore
+                            <span class="transition group-hover:translate-x-1">&rarr;</span>
+                        </span>
+                    </a>
+
+                    <a href="/category?category=History"
+                       class="soft-card group rounded-2xl border border-[#eee2d5] bg-white p-6">
+
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#f5ead1] text-xl text-[#94712f]">
+                            <i class="fa-solid fa-landmark" aria-hidden="true"></i>
+                        </div>
+
+                        <h3 class="mt-5 text-xl font-bold">History</h3>
+
+                        <p class="mt-2 text-sm leading-6 text-[#82736a]">
+                            Discover people, places, and events that shaped our world.
+                        </p>
+
+                        <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#b35c31]">
+                            Explore
+                            <span class="transition group-hover:translate-x-1">&rarr;</span>
+                        </span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Reading Quote -->
+        <section class="px-5 py-10 sm:px-8 lg:px-12">
+
+            <div class="mx-auto max-w-7xl rounded-3xl border border-[#eadbca] bg-[#f2e8dc] px-6 py-10 text-center sm:px-12 sm:py-14">
+
+                <span class="text-4xl text-[#bc7044]" aria-hidden="true">
+                    “
+                </span>
+
+                <h2 class="mx-auto mt-2 max-w-3xl text-2xl leading-relaxed font-semibold text-[#493024] sm:text-3xl">
+                    A reader lives a thousand lives before he dies.
+                </h2>
+
+                <p class="mt-4 text-sm font-medium tracking-wide text-[#8c6752]">
+                    — George R. R. Martin
+                </p>
+
+                <a href="/books"
+                   class="orange-button mt-7 inline-flex items-center gap-2 rounded-xl bg-[#493024] px-6 py-3 font-semibold text-white hover:bg-[#68432d]">
+                    Find Your Next Book
+                    <span aria-hidden="true">&rarr;</span>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <%- include('includes/footer.ejs') %>
+
+</body>
+</html>

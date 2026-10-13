@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | OpenLibrary</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="flex min-h-screen flex-col bg-[#faf7f2] font-['DM_Sans'] text-[#33251e]">
+    <%- include('includes/nav.ejs') %>
+    <% const money = amount => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(amount); %>
+    <main class="mx-auto w-full max-w-6xl flex-1 px-5 py-10 sm:px-8">
+        <div class="flex flex-wrap items-end justify-between gap-4 border-b border-[#eadbca] pb-6">
+            <div>
+                <p class="text-xs font-bold tracking-[2px] text-[#bd6a3c] uppercase">YOUR SELECTION</p>
+                <h1 class="mt-2 font-['Playfair_Display'] text-4xl font-bold">Shopping cart</h1>
+            </div>
+            <a href="/books" class="text-sm font-semibold text-[#a95327] hover:underline">Continue browsing</a>
+        </div>
+
+        <% if (!cart.length) { %>
+            <section class="py-20 text-center">
+                <i class="fa-solid fa-basket-shopping text-5xl text-[#c46b38]"></i>
+                <h2 class="mt-5 font-['Playfair_Display'] text-2xl font-bold">Your cart is empty</h2>
+                <p class="mt-2 text-[#82736a]">Find a book to get your order started.</p>
+                <a href="/books" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#493024] px-5 py-3 font-semibold text-white hover:bg-[#68432d]">Browse books</a>
+            </section>
+        <% } else { %>
+            <div class="grid gap-10 py-8 lg:grid-cols-[1fr_320px]">
+                <section class="divide-y divide-[#eadbca]">
+                    <% cart.forEach(item => { %>
+                        <article class="grid gap-5 py-6 sm:grid-cols-[104px_1fr_auto] sm:items-center">
+                            <div class="flex h-32 items-center justify-center bg-[#f2e8dc] p-2">
+                                <% if (item.image) { %><img src="<%= item.image %>" alt="<%= item.name %>" class="max-h-full max-w-full object-contain"><% } else { %><i class="fa-solid fa-book-open text-3xl text-[#b39a84]"></i><% } %>
+                            </div>
+                            <div>
+                                <h2 class="font-['Playfair_Display'] text-xl font-bold"><%= item.name %></h2>
+                                <p class="mt-1 text-sm text-[#82736a]"><%= money(item.price) %> each</p>
+                                <div class="mt-4 flex flex-wrap items-center gap-4">
+                                    <form action="/cart/update" method="POST" class="flex items-center gap-2">
+                                        <input type="hidden" name="bookId" value="<%= item.id %>">
+                                        <label for="quantity-<%= item.id.replace(/[^a-zA-Z0-9]/g, '-') %>" class="text-sm font-medium">Qty</label>
+                                        <input id="quantity-<%= item.id.replace(/[^a-zA-Z0-9]/g, '-') %>" type="number" name="quantity" value="<%= item.quantity %>" min="1" max="99" class="w-20 rounded border border-[#d9c6b4] bg-white px-2 py-1.5">
+                                        <button type="submit" class="text-sm font-semibold text-[#a95327] hover:underline">Update</button>
+                                    </form>
+                                    <form action="/cart/remove" method="POST">
+                                        <input type="hidden" name="bookId" value="<%= item.id %>">
+                                        <button type="submit" class="text-sm font-semibold text-[#a34335] hover:underline"><i class="fa-regular fa-trash-can mr-1"></i>Remove</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <p class="text-lg font-bold sm:text-right"><%= money(item.price * item.quantity) %></p>
+                        </article>
+                    <% }) %>
+                </section>
+                <aside class="h-fit border-t border-[#eadbca] pt-5 lg:border-t-0 lg:border-l lg:pl-7">
+                    <h2 class="font-['Playfair_Display'] text-xl font-bold">Order summary</h2>
+                    <div class="mt-5 flex justify-between border-b border-[#eadbca] pb-4 text-sm"><span>Subtotal</span><span><%= money(total) %></span></div>
+                    <div class="mt-4 flex justify-between text-lg font-bold"><span>Total</span><span><%= money(total) %></span></div>
+                    <p class="mt-2 text-xs text-[#82736a]">Delivery charges, if any, are confirmed at delivery.</p>
+                    <a href="/checkout" class="mt-6 flex items-center justify-center gap-2 rounded-lg bg-[#df793e] px-5 py-3 font-bold text-white hover:bg-[#c45b2b]"><i class="fa-solid fa-lock"></i>Proceed to checkout</a>
+                </aside>
+            </div>
+        <% } %>
+    </main>
+</body>
+</html>

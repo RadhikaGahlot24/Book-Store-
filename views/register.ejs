@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account | OpenLibrary</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="flex min-h-screen flex-col bg-[#faf7f2] font-['DM_Sans'] text-[#33251e]">
+    <%- include('includes/nav.ejs') %>
+    <main class="mx-auto flex w-full max-w-xl flex-1 items-center px-5 py-12">
+        <section class="w-full border-y border-[#eadbca] py-8">
+            <p class="text-xs font-bold tracking-[2px] text-[#bd6a3c] uppercase">CUSTOMER ACCOUNT</p>
+            <h1 class="mt-2 font-['Playfair_Display'] text-4xl font-bold">Create your account</h1>
+            <% if (error) { %><p role="alert" class="mt-5 border-l-4 border-[#b34335] bg-[#fff3f0] p-4 text-sm text-[#8f3027]"><%= error %></p><% } %>
+            <form action="/register" method="POST" class="mt-7 space-y-5">
+                <input type="hidden" name="next" value="<%= next %>">
+                <label class="block text-sm font-semibold">Full name<input required name="name" autocomplete="name" maxlength="100" class="mt-2 w-full rounded-lg border border-[#d9c6b4] bg-white px-3 py-3 font-normal"></label>
+                <label class="block text-sm font-semibold">Email<input required type="email" name="email" autocomplete="email" class="mt-2 w-full rounded-lg border border-[#d9c6b4] bg-white px-3 py-3 font-normal"></label>
+                <label class="block text-sm font-semibold">Password<input required type="password" name="password" autocomplete="new-password" minlength="8" class="mt-2 w-full rounded-lg border border-[#d9c6b4] bg-white px-3 py-3 font-normal"><span class="mt-1 block text-xs font-normal text-[#82736a]">Use at least 8 characters.</span></label>
+                <button type="submit" class="w-full rounded-lg bg-[#df793e] px-5 py-3 font-bold text-white hover:bg-[#c45b2b]">Create account</button>
+            </form>
+            <p class="mt-6 text-sm text-[#82736a]">Already registered? <a class="font-semibold text-[#a95327] hover:underline" href="/login?next=<%= encodeURIComponent(next) %>">Sign in</a></p>
+        </section>
+    </main>
+</body>
+</html>

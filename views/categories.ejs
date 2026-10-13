@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OpenLibrary | Categories</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .category-button {
+            transition: all 0.25s ease;
+        }
+
+        .category-button:hover {
+            transform: translateY(-2px);
+            border-color: #c46b38;
+        }
+
+        .book-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 35px rgba(65, 40, 25, 0.12);
+        }
+
+        .book-cover {
+            transition: transform 0.4s ease;
+        }
+
+        .book-card:hover .book-cover {
+            transform: scale(1.04);
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen flex-col bg-[#faf7f2] text-[#33251e]">
+
+    <!-- Navbar -->
+    <%- include('includes/nav.ejs') %>
+
+    <main class="flex-1">
+
+        <!-- Page Header -->
+        <section class="px-5 pt-9 sm:px-8 lg:px-12">
+
+            <div class="mx-auto max-w-7xl overflow-hidden rounded-3xl bg-[#493024] px-6 py-10 sm:px-10 sm:py-12">
+
+                <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+
+                    <div>
+                        <p class="text-xs font-bold tracking-[3px] text-[#f2b47e] uppercase">
+                            EXPLORE YOUR INTERESTS
+                        </p>
+
+                        <h1 class="mt-3 text-4xl font-bold text-[#fff8ee] sm:text-5xl">
+                            Discover by
+                            <span class="text-[#e9a66b]">Category.</span>
+                        </h1>
+
+                        <p class="mt-4 max-w-2xl text-sm leading-7 text-[#e4d5c9] sm:text-base">
+                            From magical adventures to inspiring biographies,
+                            explore your bookmarked books and find your next
+                            great read.
+                        </p>
+                    </div>
+
+                    <div class="hidden h-24 w-24 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-[#e9a66b] sm:flex">
+                        <i class="fa-solid fa-layer-group text-5xl"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Categories and Books -->
+        <section class="px-5 py-9 sm:px-8 lg:px-12">
+
+            <div class="mx-auto max-w-7xl rounded-3xl border border-[#eadbca] bg-white/80 p-5 shadow-sm sm:p-8">
+
+                <!-- Section Heading -->
+                <div>
+                    <p class="text-xs font-bold tracking-[2px] text-[#bd6a3c] uppercase">
+                        YOUR BOOKSHELF
+                    </p>
+
+                    <h2 class="mt-2 text-3xl font-bold text-[#33251e]">
+                        Browse Categories
+                    </h2>
+
+                    <p class="mt-2 text-sm leading-6 text-[#82736a]">
+                        Choose a category to discover your saved books.
+                    </p>
+                </div>
+
+                <!-- Category Buttons -->
+                <div class="mt-7 flex flex-wrap gap-3">
+
+                    <%
+                        const categoriesList = [
+                            'All',
+                            'Fiction',
+                            'Fantasy',
+                            'Science Fiction',
+                            'History',
+                            'Romance',
+                            'Mystery',
+                            'Education',
+                            'Biography',
+                            'Children'
+                        ];
+                    %>
+
+                    <% categoriesList.forEach(category => { %>
+
+                        <a
+                            href="/category?category=<%= encodeURIComponent(category) %>"
+                            class="category-button inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold
+                            <%= selectedCategory === category
+                                ? 'border-[#493024] bg-[#493024] text-white shadow-md'
+                                : 'border-[#eadbca] bg-[#faf7f2] text-[#684c39] hover:bg-[#f2e8dc]' %>">
+
+                            <% if (category === 'All') { %>
+                                <i class="fa-solid fa-grip"></i>
+                            <% } else if (category === 'Fiction') { %>
+                                <i class="fa-solid fa-book-open"></i>
+                            <% } else if (category === 'Fantasy') { %>
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <% } else if (category === 'Science Fiction') { %>
+                                <i class="fa-solid fa-rocket"></i>
+                            <% } else if (category === 'History') { %>
+                                <i class="fa-solid fa-landmark"></i>
+                            <% } else if (category === 'Romance') { %>
+                                <i class="fa-solid fa-heart"></i>
+                            <% } else if (category === 'Mystery') { %>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            <% } else if (category === 'Education') { %>
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            <% } else if (category === 'Biography') { %>
+                                <i class="fa-solid fa-user"></i>
+                            <% } else if (category === 'Children') { %>
+                                <i class="fa-solid fa-puzzle-piece"></i>
+                            <% } %>
+
+                            <%= category %>
+
+                            <% if (selectedCategory === category) { %>
+                                <i class="fa-solid fa-check ml-1 text-xs text-[#f2b47e]"></i>
+                            <% } %>
+
+                        </a>
+
+                    <% }) %>
+
+                </div>
+
+                <!-- Results Heading -->
+                <div class="mt-9 flex flex-wrap items-center justify-between gap-3 border-b border-[#eadbca] pb-4">
+
+                    <h2 class="text-2xl font-bold text-[#493024]">
+                        <%= selectedCategory === 'All' ? 'All Saved Books' : selectedCategory + ' Books' %>
+                    </h2>
+
+                    <span class="inline-flex items-center gap-2 rounded-full bg-[#f2e8dc] px-4 py-2 text-xs font-semibold text-[#79543c]">
+                        <i class="fa-solid fa-bookmark text-[#c46b38]"></i>
+                        Your Collection
+                    </span>
+
+                </div>
+
+                <!-- Book Cards -->
+                <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+                    <% if (books.length === 0) { %>
+
+                        <div class="col-span-full rounded-2xl border border-dashed border-[#dfcbb8] bg-[#faf7f2] px-5 py-14 text-center">
+
+                            <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#f2e8dc] text-[#b7774d]">
+                                <i class="fa-solid fa-book-open text-2xl"></i>
+                            </div>
+
+                            <h3 class="mt-5 text-2xl font-bold text-[#493024]">
+                                No Books Found
+                            </h3>
+
+                            <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-[#82736a]">
+                                There are no bookmarked books in this category yet.
+                                Try another category or browse your entire collection.
+                            </p>
+
+                            <a href="/category?category=All"
+                                class="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#df793e] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#c45b2b]">
+
+                                <i class="fa-solid fa-book-open"></i>
+                                View All Books
+
+                            </a>
+
+                        </div>
+
+                    <% } else { %>
+
+                        <% books.forEach(book => { %>
+
+                            <% const detailId = book.openLibraryId
+                                ? book.openLibraryId.replace(/^\/works\//, '')
+                                : (book._id ? String(book._id) : (book.id || '')); %>
+
+                            <article
+                                class="book-card category-book-card overflow-hidden rounded-2xl border border-[#eee2d5] bg-white shadow-sm"
+                                data-detail-url="/books/<%= detailId %>">
+
+                                <!-- Book Cover -->
+                                <div class="overflow-hidden bg-[#f2e8dc]">
+
+                                    <% if (book.image) { %>
+
+                                        <img
+                                            src="<%= book.image %>"
+                                            alt="<%= book.name %>"
+                                            loading="lazy"
+                                            class="book-cover h-64 w-full object-contain p-4"
+                                        >
+
+                                    <% } else { %>
+
+                                        <div class="flex h-64 flex-col items-center justify-center text-[#b39a84]">
+                                            <i class="fa-solid fa-book-open text-5xl"></i>
+                                            <p class="mt-3 text-sm">Cover unavailable</p>
+                                        </div>
+
+                                    <% } %>
+
+                                </div>
+
+                                <!-- Book Details -->
+                                <div class="p-5">
+
+                                    <h3 class="text-xl leading-snug font-bold text-[#493024]">
+                                        <%= book.name %>
+                                    </h3>
+
+                                    <p class="mt-3 flex items-center gap-2 text-sm text-[#a17a5d]">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <%= book.year || 'Year unavailable' %>
+                                    </p>
+
+                                    <%
+                                        const descriptionText = typeof book.description === 'string'
+                                            ? book.description.trim()
+                                            : '';
+                                        const shortDescription = descriptionText.length > 110
+                                            ? descriptionText.substring(0, 110) + '...'
+                                            : descriptionText || 'No description available for this book.';
+                                    %>
+
+                                    <p class="mt-4 min-h-[72px] text-sm leading-6 text-[#82736a]">
+                                        <%= shortDescription %>
+                                    </p>
+
+                                    <!-- Categories -->
+                                    <% if (book.categories && book.categories.length > 0) { %>
+
+                                        <div class="mt-4 flex flex-wrap gap-2">
+
+                                            <% book.categories.slice(0, 3).forEach(category => { %>
+
+                                                <span class="rounded-full border border-[#eadbca] bg-[#faf3eb] px-3 py-1 text-xs font-medium text-[#79543c]">
+                                                    <%= category %>
+                                                </span>
+
+                                            <% }) %>
+
+                                        </div>
+
+                                    <% } else { %>
+
+                                        <p class="mt-4 text-sm text-[#a38b79]">
+                                            <i class="fa-solid fa-tags mr-1"></i>
+                                            No categories available
+                                        </p>
+
+                                    <% } %>
+
+                                    <div class="mt-5 flex flex-col gap-3">
+                                        <form action="/cart/add" method="POST">
+                                            <input type="hidden" name="bookId" value="<%= book.openLibraryId || book.id || book._id %>">
+                                            <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#df793e] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#c45b2b]">
+                                                <i class="fa-solid fa-cart-plus"></i>
+                                                Add to cart
+                                            </button>
+                                        </form>
+
+                                        <a href="/books/<%= detailId %>" class="inline-flex items-center justify-center gap-2 rounded-lg border border-[#eadbca] bg-[#faf7f2] px-4 py-2.5 text-sm font-semibold text-[#493024] transition hover:bg-[#f2e8dc]">
+                                            <i class="fa-solid fa-eye"></i>
+                                            View details
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        <% }) %>
+
+                    <% } %>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <%- include('includes/footer.ejs') %>
+
+    <script>
+        document.querySelectorAll('.category-book-card').forEach(card => {
+            const targetUrl = card.dataset.detailUrl
+            if (!targetUrl) return
+
+            let lastTap = 0
+
+            const openBook = () => {
+                window.location.href = targetUrl
+            }
+
+            card.addEventListener('dblclick', event => {
+                if (!event.target.closest('button, a, form, input, textarea, select, label')) {
+                    openBook()
+                }
+            })
+
+            card.addEventListener('touchstart', event => {
+                if (event.target.closest('button, a, form, input, textarea, select, label')) return
+
+                const now = Date.now()
+                if (now - lastTap < 320) {
+                    openBook()
+                }
+                lastTap = now
+            }, { passive: true })
+        })
+    </script>
+
+</body>
+</html>
